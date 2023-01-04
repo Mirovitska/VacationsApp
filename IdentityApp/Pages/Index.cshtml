@@ -1,0 +1,93 @@
+﻿@page
+@using IdentityApp.Authorization
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.1/dist/chart.umd.min.js"></script>
+    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+</head>
+
+
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Welcome</h1>
+    <p>This is our Vacation Request System.</p>
+</div>
+
+
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+
+
+
+@section Scripts {
+
+    <script>
+
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Vacations Submitted",
+                    backgroundColor: "rgb(0,0,0)",
+                    borderColor: "rgb(0,0,0)",
+                    cubicInterpolationMode: "monotone",
+                    data: @Json.Serialize(Model.vacationsSubmitted)
+                },
+                {
+                    label: "Vacations Approved",
+                    backgroundColor: "rgb(132,99,255)",
+                    borderColor: "rgb(132,99,255)",
+                    cubicInterpolationMode: "monotone",
+                    data: @Json.Serialize(Model.vacationsApproved)
+                },
+                {
+                    label: "Vacations Rejected",
+                    backgroundColor: "rgb(255,99,132)",
+                    borderColor: "rgb(255,99,132)",
+                    cubicInterpolationMode: "monotone",
+                    data: @Json.Serialize(Model.vacationsRejected)
+                 }
+            ]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+    </script>
+
+}

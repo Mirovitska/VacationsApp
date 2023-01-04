@@ -1,0 +1,45 @@
+﻿@page
+@model IdentityApp.Pages.Invoices.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Vacations</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Invoice.VacationsId" />
+            <div class="form-group">
+                <label asp-for="Invoice.CountOfVacationsDay" class="control-label"></label>
+                <input asp-for="Invoice.CountOfVacationsDay" class="form-control" />
+                <span asp-validation-for="Invoice.CountOfVacationsDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.VacationsMonth" class="control-label"></label>
+                <input asp-for="Invoice.VacationsMonth" class="form-control" />
+                <span asp-validation-for="Invoice.VacationsMonth" class="text-danger"></span>
+          </div>
+            <div class="form-group">
+                <label asp-for="Invoice.VacationsOwner" class="control-label"></label>
+                <input asp-for="Invoice.VacationsOwner" class="form-control" />
+                <span asp-validation-for="Invoice.VacationsOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
